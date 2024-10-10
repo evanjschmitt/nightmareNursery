@@ -1,4 +1,4 @@
-import { changePage } from "../model/model.js";
+import { changePage } from "../../model/model.js";
 
 function initListeners() {
   Swal.fire({
@@ -13,7 +13,7 @@ function initListeners() {
 function route() {
   let hashTag = window.location.hash;
   let pageID = hashTag.replace("#", "");
-  console.log("route", pageID);
+  // console.log("route", pageID);
   changePage(pageID);
 }
 

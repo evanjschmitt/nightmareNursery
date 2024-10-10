@@ -8,6 +8,7 @@ nav {
   padding-right: 20px;
   background-color: $black;
   height: 100px;
+  
 
   .logo {
     a {
@@ -15,11 +16,13 @@ nav {
     align-items: center;
     justify-content: space-evenly;
     padding: 10px;
+    text-decoration: none;
     }
     h1 {
         color: $beige;
         padding-top: 15px;
         padding-left: 20px;
+        text-decoration: none;
     }
 
     img {
@@ -38,6 +41,7 @@ nav {
       text-decoration: none;
       padding: 20px;
       font-size: 18px;
+      font-family: nanum;
     }
   }
 }

@@ -121,11 +121,13 @@ nav .logo a {
   align-items: center;
   justify-content: space-evenly;
   padding: 10px;
+  text-decoration: none;
 }
 nav .logo h1 {
   color: #E7E6DD;
   padding-top: 15px;
   padding-left: 20px;
+  text-decoration: none;
 }
 nav .logo img {
   max-width: 75px;
@@ -140,4 +142,5 @@ nav .links a {
   text-decoration: none;
   padding: 20px;
   font-size: 18px;
+  font-family: nanum;
 }
