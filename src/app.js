@@ -1,4 +1,4 @@
-import { changePage } from "../model/model.js";
+import { changePage } from "./model.js";
 
 function initListeners() {
   Swal.fire({

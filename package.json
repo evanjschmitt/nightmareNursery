@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "serve": "live-server",
-    "compile-sass": "sass public/scss/styles.scss public/css/styles.css -w --no-source-map"
+    "serve": "live-server dist",
+    "compile": "sass dist/scss/styles.scss dist/css/styles.css -w --no-source-map",
+    "build-webpack": "webpack"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,10 @@
   "description": "",
   "dependencies": {
     "firebase": "^10.14.0",
-    "sass": "^1.78.0"
+    "sass": "^1.78.0",
+    "webpack": "^5.96.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
