@@ -5,19 +5,20 @@ import {
   collection,
   addDoc,
   serverTimestamp,
-} from "firebase/firestore"; 
+} from "firebase/firestore";
 import { changePage } from "./model.js";
 import Swal from "sweetalert2";
 import * as $ from "jquery";
 
 // Initialize Firebase - Firebase configuration object
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id",
+  apiKey: "AIzaSyCrdKVjsoKYDEg2SGcg5h3-H0A3lr2H_uw",
+  authDomain: "nightmare-nursery-games.firebaseapp.com",
+  projectId: "nightmare-nursery-games",
+  storageBucket: "nightmare-nursery-games.appspot.com",
+  messagingSenderId: "356180402296",
+  appId: "1:356180402296:web:8f1af7371a5f01bb9d8d8d",
+  measurementId: "G-JGTGR072LW",
 };
 
 // Initialize Firebase App
