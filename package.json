@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "serve": "live-server dist",
+    "serve": "live-server public",
     "compile": "sass dist/scss/styles.scss dist/css/styles.css -w --no-source-map",
     "build-webpack": "webpack"
   },
@@ -13,7 +13,9 @@
   "description": "",
   "dependencies": {
     "firebase": "^10.14.0",
+    "jquery": "^3.7.1",
     "sass": "^1.78.0",
+    "sweetalert2": "^11.14.5",
     "webpack": "^5.96.1"
   },
   "devDependencies": {

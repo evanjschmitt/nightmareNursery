@@ -4,10 +4,10 @@ const path = require("path");
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
-  entry: "./src/index.js",
+  entry: "./public/src/index.js",
 
   output: {
-    path: path.resolve(__dirname, "dist/public/app"),
+    path: path.resolve(__dirname, "public/dist/app"),
     filename: "app.js",
   },
   watch: true,
