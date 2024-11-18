@@ -1,15 +1,10 @@
 // Import necessary Firebase functions from the modular SDK
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { changePage } from "./model.js";
 import Swal from "sweetalert2";
+// import React, { useState, useEffect } from "react";
 import * as $ from "jquery";
-
 // Initialize Firebase - Firebase configuration object
 const firebaseConfig = {
   apiKey: "AIzaSyCrdKVjsoKYDEg2SGcg5h3-H0A3lr2H_uw",
@@ -21,19 +16,41 @@ const firebaseConfig = {
   measurementId: "G-JGTGR072LW",
 };
 
-// Initialize Firebase App
+// Initialize Firebase App + Firestore
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firestore
 const db = getFirestore(app);
 
 // Initialize event listeners and routing
 function initListeners() {
-  Swal.fire({
-    title: "Error",
-    text: "Do you want to continue?",
-    icon: "error",
-    showCancelButton: true,
+  // Swal.fire({
+  //   title: "Error",
+  //   text: "Do you want to continue?",
+  //   icon: "error",
+  //   showCancelButton: true,
+  // });
+  document.getElementById("emailForm").addEventListener("submit", async (e) => {
+    console.log("Button Listener Works");
+    e.preventDefault();
+    const emailInput = document.getElementById("emailInput");
+    const email = emailInput.value.trim();
+    const messageDiv = document.getElementById("message");
+
+    console.log("Email Grabbed:", email);
+
+    if (email) {
+      try {
+        await addDoc(collection(db, "email_list"), { email });
+        messageDiv.textContent = "Thank you for joining the email list!";
+        emailInput.value = ""; // Clear the input
+      } catch (error) {
+        console.error("Error adding email: ", error);
+        messageDiv.textContent =
+          "Error: Could not join the email list. Please try again.";
+      }
+    } else {
+      messageDiv.textContent = "Please enter a valid email.";
+    }
+    console.log("Rest of function called");
   });
 }
 
@@ -50,35 +67,6 @@ function initSite() {
   $(window).on("hashchange", route);
   route();
 }
-
-// Form submission handling and Firestore integration
-// document.getElementById("emailForm").addEventListener("submit", async (e) => {
-//   e.preventDefault(); // Prevent traditional form submission
-
-//   const email = document.getElementById("email").value; // Get email input
-//   const successMessage = document.getElementById("successMessage");
-//   const errorMessage = document.getElementById("errorMessage");
-
-//   try {
-//     // Add email to Firestore "emails" collection with a timestamp
-//     await addDoc(collection(db, "emails"), {
-//       email: email,
-//       timestamp: serverTimestamp(), // Firestore server timestamp
-//     });
-
-//     // Display success message
-//     successMessage.style.display = "block";
-//     errorMessage.style.display = "none";
-//   } catch (error) {
-//     // Handle errors
-//     console.error("Error adding email to Firestore: ", error);
-//     errorMessage.style.display = "block";
-//     successMessage.style.display = "none";
-//   }
-
-//   // Clear the form after submission
-//   document.getElementById("emailForm").reset();
-// });
 
 // Initialize site and listeners on document ready
 $(document).ready(function () {

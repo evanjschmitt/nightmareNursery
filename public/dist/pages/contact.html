@@ -40,14 +40,24 @@
 
   </div>
   <div class="pageSection textSection flexSection">
-    <div class="text">
-      <h1>Join our email list!</h1>
-      <h3>Nightmares in your inbox</h3>
-      <p>Want to get the latest updates from Nightmare Nursery? Be sure to <span><a class="linkText" href="./emailList.html">Join
-            our email list</a></span>!</p>
-    </div>
-    <div class="img">
-      <img class="siteImage" src="/dist/img/emailPlaceholder.png" alt="Group Photo Placeholder">
+    <div class="email-list-container">
+      <h2>Join Our Email List</h2>
+      <form id="emailForm">
+        <label for="email">Enter your email:</label>
+        <input
+          type="email"
+          id="emaiInput"
+          name="email"
+          required
+          placeholder="Enter your email..."
+        />
+        <button id="submitButton" type="submit">Join The NN Crew!</button>
+      </form>
+      <div id="message"></div>
+
+      <!-- <p id="successMessage" style="display:none;">Thank you for subscribing!</p>
+      <p id="errorMessage" style="display:none; color: red;">An error occurred, please try again.</p>
+      <ul id="emailList"></ul>       -->
     </div>
 
   </div>
