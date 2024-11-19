@@ -3,18 +3,18 @@ const path = require("path");
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
-  entry: "./public/src/index.js", // Entry point for the app
+  entry: "./public/src/app.js",
 
   output: {
-    path: path.resolve(__dirname, "public/dist/app"), // Output directory
-    filename: "app.js", // Output filename
+    path: path.resolve(__dirname, "public/dist/app"),
+    filename: "app.js",
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/, // Process all .js files
-        exclude: /node_modules/, // Exclude dependencies
+        test: /\.m?js$/,
+        exclude: /node_modules\/(?!(firebase|@firebase)\/)/, // Transpile Firebase
         use: {
           loader: "babel-loader",
           options: {
@@ -23,6 +23,10 @@ module.exports = {
         },
       },
     ],
+  },
+
+  resolve: {
+    fullySpecified: false, // Allow importing bare specifiers
   },
 
   watch: true,

@@ -1,7 +1,7 @@
 {
   "name": "homework01",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "public/src/index.js",
   "scripts": {
     "serve": "live-server public",
     "compile": "sass dist/scss/styles.scss dist/css/styles.css -w --no-source-map",
@@ -13,7 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "firebase": "^10.14.0",
+    "firebase": "^10.14.1",
     "jquery": "^3.7.1",
     "sass": "^1.78.0",
     "sweetalert2": "^11.14.5",
