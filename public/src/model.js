@@ -1,6 +1,6 @@
 import * as $ from "jquery";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-
+import { initListeners } from "./app.js";
 //ROUTING FUNCTIONS
 export function changePage() {
   let hashTag = window.location.hash;
@@ -9,10 +9,12 @@ export function changePage() {
   if (pageID != "") {
     $.get(`../dist/pages/${pageID}.html`, function (data) {
       $("#app").html(data);
+      initListeners();
     });
   } else {
     $.get(`/dist/pages/home.html`, function (data) {
       $("#app").html(data);
+      initListeners();
     });
   }
 }
