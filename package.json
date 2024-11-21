@@ -4,7 +4,7 @@
   "main": "public/src/index.js",
   "scripts": {
     "serve": "live-server public",
-    "compile": "sass dist/scss/styles.scss dist/css/styles.css -w --no-source-map",
+    "compile": "sass public/dist/scss/styles.scss public/dist/css/styles.css -w --no-source-map",
     "build-webpack": "webpack",
     "firebase-push": "firebase deploy --only hosting:nightmarenurserygames"
   },
