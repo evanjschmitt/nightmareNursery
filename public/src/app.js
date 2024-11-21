@@ -22,27 +22,43 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
+let isClickListenerAdded = false;
+
 export async function initListeners() {
   console.log("Listeners init started");
 
-  // Use delegation to listen for clicks on the email submit button
-  document.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "emailSubmit") {
-      console.log("On Email Page");
+  // Attach the click listener only once
+  if (!isClickListenerAdded) {
+    document.addEventListener("click", async (e) => {
+      if (e.target && e.target.id === "emailSubmit") {
+        console.log("On Email Page");
 
-      const emailInput = document.getElementById("emailInput");
-      const email = emailInput ? emailInput.value.trim() : "";
+        const emailInput = document.getElementById("emailInput");
+        const email = emailInput ? emailInput.value.trim() : "";
 
-      if (!email) {
-        console.error("No email entered");
-        alert("Please enter a valid email address");
-        return;
-      } else {
-        addEmail(email, db);
-        console.log("Email Added!", email);
+        if (!email) {
+          console.error("No email entered");
+          alert("Please enter a valid email address");
+          return;
+        }
+
+        // Prevent double submission
+        e.target.disabled = true; // Disable the button temporarily
+        try {
+          await addEmail(email, db);
+          // console.log("Email Added!", email);
+          // alert("Email successfully added!");
+        } catch (error) {
+          console.error("Error adding email:", error);
+          alert("Failed to add email. Please try again.");
+        } finally {
+          e.target.disabled = false; // Re-enable the button
+        }
       }
-    }
-  });
+    });
+
+    isClickListenerAdded = true; // Mark the listener as added
+  }
 
   console.log("Listeners init finished");
 }

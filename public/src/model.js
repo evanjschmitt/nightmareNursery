@@ -1,6 +1,7 @@
 import * as $ from "jquery";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc, Timestamp } from "firebase/firestore";
 import { initListeners } from "./app.js";
+import Swal from "sweetalert2";
 //ROUTING FUNCTIONS
 export function changePage() {
   let hashTag = window.location.hash;
@@ -25,21 +26,57 @@ function initURLListener() {
 }
 
 //Database email addition
+// export async function addEmail(email, db) {
+//   try {
+//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (!emailRegex.test(email)) {
+//       throw new Error("Invalid email format");
+//     }
+//     const emailList = collection(db, "emails");
+//     const docRef = await addDoc(emailList, {
+//       email: email,
+//       timestamp: new Date(),
+//     });
+//     console.log("Email added :D", docRef.id);
+//     return true;
+//   } catch (error) {
+//     console.log("Error Adding Email:", error.message);
+//     return false;
+//   }
+// }
+
+/**
+ * Add email to Firestore with the email as the document ID.
+ * @param {string} email - The email address to add.
+ * @param {object} db - The Firestore database instance.
+ * @returns {Promise<boolean>} - Resolves to true if successful, otherwise false.
+ */
 export async function addEmail(email, db) {
   try {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      throw new Error("Invalid email format");
-    }
-    const emailList = collection(db, "emails");
-    const docRef = await addDoc(emailList, {
+        if (!emailRegex.test(email)) {
+          // throw new Error("Invalid email format");
+          Swal.fire({
+            icon: 'error',
+            title: 'Invalid Email',
+            text: 'Please enter a valid email address.',
+            confirmButtonText: 'Okay'
+          });
+          return;
+        }
+    // Use email as the document ID
+    const emailDocRef = doc(db, "emails", email);
+
+    // Add email to the document
+    await setDoc(emailDocRef, {
       email: email,
-      timestamp: new Date(),
+      createdAt: Timestamp.now(), // Optional: Add a timestamp
     });
-    console.log("Email added :D", docRef.id);
+
+    console.log("Email added with ID:", email);
     return true;
   } catch (error) {
-    console.log("Error Adding Email:", error.message);
+    console.error("Error adding email:", error);
     return false;
   }
 }

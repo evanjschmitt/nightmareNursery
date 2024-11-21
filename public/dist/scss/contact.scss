@@ -1,0 +1,22 @@
+.emailInput {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+}
+.emailButton {
+    background-color: $lightGreen;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+    margin-left: 20px;
+    &:hover {
+        cursor: pointer;
+        background-color: $darkGreen;
+        color: white;
+    }
+}
