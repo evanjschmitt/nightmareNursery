@@ -25,7 +25,7 @@ const db = getFirestore(app);
 let isClickListenerAdded = false;
 
 export async function initListeners() {
-  console.log("Listeners init started");
+  // console.log("Listeners init started");
 
   // Attach the click listener only once
   if (!isClickListenerAdded) {
@@ -60,7 +60,7 @@ export async function initListeners() {
     isClickListenerAdded = true; // Mark the listener as added
   }
 
-  console.log("Listeners init finished");
+  // console.log("Listeners init finished");
 }
 
 function route() {
